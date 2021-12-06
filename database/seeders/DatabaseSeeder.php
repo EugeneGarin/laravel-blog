@@ -16,52 +16,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
-        Post::truncate();
-        Category::truncate();
-
-        $user = User::factory()->create();
-
-        $personal = Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal',
+        $user1 = User::factory()->create([
+            'name' => 'John Doe',
         ]);
 
-        $family = Category::create([
-            'name' => 'Family',
-            'slug' => 'family',
+        $user2 = User::factory()->create([
+            'name' => 'Eugene Garin',
         ]);
 
-        $work = Category::create([
+        $category1 = Category::factory()->create([
+            'name' => 'Hobbies',
+        ]);
+
+        $category2 = Category::factory()->create([
             'name' => 'Work',
-            'slug' => 'work',
         ]);
 
-        Post::create([
-            'user_id'       => $user->id,
-            'category_id'   => $personal->id,
-            'slug'          => 'my-first-post',
-            'title'         => 'My First Post',
-            'excerpt'       => '<p>Lorem ipsum dolor sit amet.</p>',
-            'body'          => '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium dolor officia velit tempora iste iure debitis commodi, consequuntur dolorum veritatis. Possimus recusandae perspiciatis illum, suscipit voluptas officia magni temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium dolor officia velit tempora iste iure debitis commodi, consequuntur dolorum veritatis. Possimus recusandae perspiciatis illum, suscipit voluptas officia magni temporibus.</p>',
+        Post::factory()->create([
+            'user_id'       => $user1->id,
+            'category_id'   => $category1->id,
         ]);
 
-        Post::create([
-            'user_id'       => $user->id,
-            'category_id'   => $family->id,
-            'slug'          => 'my-second-post',
-            'title'         => 'My Second Post',
-            'excerpt'       => '<p>Lorem ipsum dolor sit amet.</p>',
-            'body'          => '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium dolor officia velit tempora iste iure debitis commodi, consequuntur dolorum veritatis. Possimus recusandae perspiciatis illum, suscipit voluptas officia magni temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium dolor officia velit tempora iste iure debitis commodi, consequuntur dolorum veritatis. Possimus recusandae perspiciatis illum, suscipit voluptas officia magni temporibus.</p>',
+        Post::factory()->create();
+
+        Post::factory(2)->create([
+            'user_id'       => $user2->id,
+            'category_id'   => $category2->id,
         ]);
 
-        Post::create([
-            'user_id'       => $user->id,
-            'category_id'   => $work->id,
-            'slug'          => 'my-third-post',
-            'title'         => 'My hird Post',
-            'excerpt'       => '<p>Lorem ipsum dolor sit amet.</p>',
-            'body'          => '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium dolor officia velit tempora iste iure debitis commodi, consequuntur dolorum veritatis. Possimus recusandae perspiciatis illum, suscipit voluptas officia magni temporibus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae laudantium dolor officia velit tempora iste iure debitis commodi, consequuntur dolorum veritatis. Possimus recusandae perspiciatis illum, suscipit voluptas officia magni temporibus.</p>',
-        ]);
+        Post::factory(2)->create();
     }
 }
